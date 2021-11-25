@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  UserDB:
+    image: postgres
+    container_name: 'postgres_api.service.users'
+    restart: always
+    environment:
+      - POSTGRES_DB=user
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - '5442:5432'
+  ProductDB:
+    image: postgres
+    container_name: 'postgres_api.service.products'
+    restart: always
+    environment:
+      - POSTGRES_DB=product
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - '5452:5432'
+  redis:
+    image: "redis:alpine"
+    container_name: 'redis_api.service'
+    restart: always
+    ports:
+      - "6389:6379"
