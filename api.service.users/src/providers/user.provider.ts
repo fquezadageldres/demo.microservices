@@ -9,7 +9,7 @@ export default class UserProvider {
         return this.prisma.user.findMany()
     }
 
-    public async createUser(data:UserDto): Promise<User> {
+    public async createUser(data:UserDto | any): Promise<User> {
         return this.prisma.user.create({
             data
         })

@@ -1,5 +1,4 @@
 export type ProductDto = {
-    productName:string
-    quantity: number
+    name:string
     jobId:number
 }

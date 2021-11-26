@@ -1,17 +1,14 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import routes from './routes/user.route';
+import routes from './routes/gateway.route';
 import morgan from 'morgan';
 import cors from 'cors';
 dotenv.config();
 
 const app = express();
-app.listen(process.env.API_PORT, () => {
-    console.log(`Running at: http://localhost:${process.env.API_PORT}`);
-});
+app.use(cors());
 app.use(express.json());
 app.use(routes);
-app.use(cors());
 app.use(
   morgan((tokens, req, res) => {
     return [
@@ -25,6 +22,9 @@ app.use(
     ].join(' ');
   })
 );
+app.listen(process.env.API_PORT, () => {
+    console.log(`Running at: http://localhost:${process.env.API_PORT}`);
+});
 
 
 

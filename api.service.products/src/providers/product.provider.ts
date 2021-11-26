@@ -9,7 +9,7 @@ export default class ProductProvider {
         return this.prisma.product.findMany()
     }
 
-    public async createProduct(data:ProductDto): Promise<Product> {
+    public async createProduct(data:ProductDto | any): Promise<Product> {
         return this.prisma.product.create({
             data
         })
