@@ -9,12 +9,13 @@ interface IProps {
 
 const FormProduct = ({ queue, setQueue }:IProps) => {
 
-  const [product, setProduct] = useState({ name:'' });
+  const [product, setProduct] = useState({});
 
   const handleInputChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setProduct({
       ...product,
-      [event.target.name] : event.target.value
+      [event.target.name] : event.target.value,
+      delay: Math.floor(Math.random() * (15000 - 5000) ) + 5000
     })
   }
 
@@ -23,7 +24,6 @@ const FormProduct = ({ queue, setQueue }:IProps) => {
 
     setTimeout( async function() {
       const newProduct = await createElement('PRODUCT', product)
-      console.log(newProduct)
       setQueue([ ...queue, {jobId:newProduct.jobId, queue:newProduct.data.queue, name:newProduct.data.data.name}])
     }, 1000)
   }

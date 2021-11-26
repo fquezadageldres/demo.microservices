@@ -3,10 +3,11 @@ import { IState as IProps } from './Layaut';
 
 const Queue = ({ queue }:IProps) => {
 
+  console.log(queue)
   return (
     <Fragment>
       <div className="w-100 border m-5 p-3 rounded">
-      <h3>Colas</h3>
+      <h3>Tareas encoladas</h3>
       <div className="d-flex">
       { 
         queue.map(x => 

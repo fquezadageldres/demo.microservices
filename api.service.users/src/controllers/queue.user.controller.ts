@@ -1,13 +1,14 @@
 import { Job } from 'bullmq';
-import UserProvider from '../providers/user.provider';
+import UserFacade from '../facade/user.facade';
 
 module.exports = async (job:Job<any>) => {
 
     try {
-        console.log(job.data)
-        const userProvider = new UserProvider();
+        const userFacade = new UserFacade();
         const jobId:number = parseInt(job.id);
-        await userProvider.createUser({ ...job.data, jobId:jobId });
+        setTimeout( async () => {
+            await userFacade.createUser({ name:job.data.name, jobId:jobId });
+        }, job.data.delay)
     } catch (error) {
         let err: Error = error as any
         console.log(err)

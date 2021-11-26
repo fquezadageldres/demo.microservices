@@ -1,16 +1,17 @@
-import { Product, PrismaClient } from '@prisma/client';
+import { Product } from '@prisma/client';
 import { ProductDto } from '../dto/product.dto'
+import { IConnection } from './connection';
  
 
 export default class ProductProvider {
-    constructor(private prisma = new PrismaClient()) {}
+    constructor(private connection: IConnection) {}
 
     public async getProducts() {
-        return this.prisma.product.findMany()
+        return this.connection.prisma.product.findMany()
     }
 
     public async createProduct(data:ProductDto | any): Promise<Product> {
-        return this.prisma.product.create({
+        return this.connection.prisma.product.create({
             data
         })
     }

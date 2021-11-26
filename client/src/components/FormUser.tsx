@@ -9,12 +9,13 @@ interface IProps {
 
 const FormUser = ({ setQueue, queue }:IProps ) => {
 
-  const [user, setUser] = useState({ name:'' });
+  const [user, setUser] = useState({});
 
   const handleInputChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [event.target.name] : event.target.value
+      [event.target.name] : event.target.value,
+      delay: Math.floor(Math.random() * (15000 - 5000) ) + 5000
     })
   }
 
@@ -23,7 +24,6 @@ const FormUser = ({ setQueue, queue }:IProps ) => {
 
     setTimeout( async function() {
       const newUser = await createElement('USER', user)
-      console.log(newUser)
       setQueue([ ...queue, {jobId:newUser.jobId, queue:newUser.data.queue, name:newUser.data.data.name}])
     }, 1000)
   }

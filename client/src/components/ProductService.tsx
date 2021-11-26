@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import getUsers from "../provider/user.provider";
+import getProducts from "../provider/product.provider";
 import { IState as Props } from './Layaut';
 
 interface IProps {
@@ -7,14 +7,14 @@ interface IProps {
   setQueue: React.Dispatch<React.SetStateAction<Props['queue']>>
 }
 
-const UserService = ({ queue, setQueue }:IProps) => {
+const ProductService = ({ queue, setQueue }:IProps) => {
 
-  const [user, setUser] = useState([]);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     const interval = setInterval( async () => {
-      const users = await getUsers();
-      setUser(users.users)
+      const { products } = await getProducts();
+      setProduct(products)
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -22,17 +22,16 @@ const UserService = ({ queue, setQueue }:IProps) => {
   return (
     <Fragment>
       <div className="w-100 border m-5 p-3 rounded">
-        <h3>User Service DB</h3>
+        <h3>Product Service DB</h3>
         <div className="d-flex flex-wrap">
         { 
-          user.map((x:any) => 
-          <div key={x.jobId}>
+          product.map((x:any) => 
             <span 
-              className='badge badge-info p-2 m-1' 
+              className='badge badge-secondary p-2 m-1' 
+              key={x.jobId}
             >
               {x.name}
             </span>
-          </div>
           )
         }
         </div>
@@ -41,4 +40,4 @@ const UserService = ({ queue, setQueue }:IProps) => {
   )
 }
 
-export default UserService;
+export default ProductService;

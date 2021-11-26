@@ -2,6 +2,7 @@ import { useState } from "react";
 import FormUser from './FormUser';
 import FormProduct from './FormProduct';
 import UserService from './UserService';
+import ProductService from './ProductService';
 import Queue from './Queue';
 
 export interface IState {
@@ -27,14 +28,16 @@ const Layaut = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col col-1"></div>
-        <div className="col col-10 d-flex justify-content-center">
+        <div className="col col-12 d-flex justify-content-center">
           <Queue queue={ queue }/>
         </div>
       </div>
       <div className="row">
           <div className="col col-6 d-flex justify-content-center">
               <UserService queue={ queue } setQueue={ setQueue } />
+          </div>
+          <div className="col col-6 d-flex justify-content-center">
+              <ProductService queue={ queue } setQueue={ setQueue } />
           </div>
       </div>
     </div>
